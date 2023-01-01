@@ -1,0 +1,18 @@
+#root {
+  height: 100vh;
+  
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(124, 133, 136);
+  height: 100vh;
+  
+}
+
+
+
