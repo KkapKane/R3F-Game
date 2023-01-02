@@ -12,7 +12,7 @@ const Arrows = ({move, setArrows, arrows}) => {
       className='Arrow'
       style={
         move.pressed == true
-          ? { transform: `rotate(${move.direction}deg)`, left: move.position, backgroundColor: 'green' }
+          ? { transform: `rotate(${move.direction}deg)`, left: move.position, backgroundColor: 'lightgreen' }
           : { transform: `rotate(${move.direction}deg)`, left: move.position }
       }
     />

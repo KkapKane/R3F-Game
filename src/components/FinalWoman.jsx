@@ -19,10 +19,12 @@ const FinalWoman = (props) => {
   }, [names]);
 
   useEffect(() => {
-    setTimeout(()=>{
+
+
 
       actions[names[animationIndex]].reset().fadeIn(0.5).play();
-    }, 250)
+    
+
     return () => {
       actions[names[animationIndex]].fadeOut(0.5);
     };

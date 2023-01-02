@@ -1,9 +1,14 @@
 import '../App.css'
+import {useEffect, useState} from 'react'
+const SpaceIndicator =({ballPosition})=> {
 
-const SpaceIndicator =()=> {
+
+
+
+
     return (
         <div className="SPACE">
-           <div className="ball">[]</div>
+           <div style={{position: "absolute", left:`${ballPosition}%`}} className="ball">[]</div>
         </div>
     )
 }
