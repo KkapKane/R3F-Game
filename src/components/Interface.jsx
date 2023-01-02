@@ -29,7 +29,7 @@ const Interface = () => {
     let currentMove = [];
     for (let i = 0; i < num; i++) {
       currentMove.push({
-        position: `${44 + 4 * i}%`,
+        position: `${40 + 4 * i}%`,
         direction:
           possibleMoves[Math.floor(Math.random() * possibleMoves.length)],
           pressed: false

@@ -22,7 +22,32 @@ html, body {
       margin-right: -50%;
       
       z-index: 99;
+    }
+    
+    .SPACE {
+      position: absolute;
+      left: 39%;
+      width: 25%;
+      height:2%;
+      border: 1px solid black;
+  top: 76%;
+  transition: 1000ms;
+  
+  z-index: 99;
 }
 
+.ball {
+  position: absolute;
+  display: inline-block;
 
+animation: Spread 3s linear infinite;  
+}
 
+@keyframes Spread {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 98%;
+  }
+}

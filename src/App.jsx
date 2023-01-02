@@ -9,7 +9,8 @@ import './App.css'
 import Experience from "./components/Experience";
 import Interface from "./components/Interface";
 import { Suspense } from "react";
-
+import { TrackballControls } from "@react-three/drei";
+import SpaceIndicator from "./components/SpaceIndicator";
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
       <Suspense>
         
       <Interface />
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} shadows>
+      <SpaceIndicator />
+      <Canvas camera={{ position: [0, 0, 5], fov: 50 }} shadows>
         <Experience   />
       </Canvas>
       </Suspense>
