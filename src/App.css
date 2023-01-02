@@ -14,5 +14,15 @@ html, body {
   
 }
 
+.Arrow {
+  
+  position: absolute;
+      top: 70%;
+      left: 40%;
+      margin-right: -50%;
+      
+      z-index: 99;
+}
+
 
 
