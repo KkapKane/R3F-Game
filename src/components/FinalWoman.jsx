@@ -7,7 +7,7 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useCharacterAnimation } from "../context/CharacterAnimation";
 
-const FinalWoman = ({ props }) => {
+const FinalWoman = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("./models/FinalWoman.gltf");
   const { setAnimations, animationIndex, setAnimationIndex } =
@@ -19,7 +19,10 @@ const FinalWoman = ({ props }) => {
   }, [names]);
 
   useEffect(() => {
-    actions[names[animationIndex]].reset().fadeIn(0.5).play();
+    setTimeout(()=>{
+
+      actions[names[animationIndex]].reset().fadeIn(0.5).play();
+    }, 250)
     return () => {
       actions[names[animationIndex]].fadeOut(0.5);
     };

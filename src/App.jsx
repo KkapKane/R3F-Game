@@ -8,7 +8,7 @@ import { useState} from 'react';
 import './App.css'
 import Experience from "./components/Experience";
 import Interface from "./components/Interface";
-
+import { Suspense } from "react";
 
 
 function App() {
@@ -17,11 +17,13 @@ function App() {
 
   return (
     <>
-    
+      <Suspense>
+        
       <Interface />
-      <Canvas camera={{ position: [1, 1.5, 2.5], fov: 50 }} shadows>
+      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} shadows>
         <Experience   />
       </Canvas>
+      </Suspense>
     </>
   );
 }

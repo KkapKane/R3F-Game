@@ -3,23 +3,18 @@ import { useEffect } from "react";
 
 
 const Arrows = ({move, setArrows, arrows}) => {
-// useEffect(() => {
-//     if(arrows.length == 6){
-//         setArrows([]);
-//     }
-//     setArrows((oldArray) => [...oldArray, move.direction]);
-  
-// }, [move]);
+
 
   return (
     <img
       src={arrow}
       alt=''
       className='Arrow'
-      style={{
-        transform: `rotate(${move.direction}deg)`,
-        left: move.position ,
-      }}
+      style={
+        move.pressed == true
+          ? { transform: `rotate(${move.direction}deg)`, left: move.position, backgroundColor: 'green' }
+          : { transform: `rotate(${move.direction}deg)`, left: move.position }
+      }
     />
   );
 };
