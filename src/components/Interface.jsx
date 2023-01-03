@@ -38,7 +38,7 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore}) => {
   useEffect(() => {
     //start model off standing idle
     setAnimationIndex(7);
-    
+  
     document.addEventListener("keydown", detectKeyDown, true);
 
 
@@ -64,28 +64,29 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore}) => {
     setPressState(currentMove);
   }
   
-  useEffect(() => {
+  // useEffect(() => {
     
-    setTimeout(() => {
-      generateMoves(6);
+  //   // setTimeout(() => {
+  //   //   generateMoves(6);
       
       
-    }, 800);
-    setTimeout(() => {
+  //   // }, 800);
+  //   setTimeout(() => {
       
       
-      setSpacePressed(false);
-    }, 1500);
+  //     setSpacePressed(false);
+  //   }, 1500);
     
    
     
-  }, [animationIndex]);
+  // }, [animationIndex]);
 
 useEffect(() => {
   if (ballPosition > 100) {
    
 
       generateMoves(6);
+      setSpacePressed(false);
   
     setBallPosition(0);
   }
@@ -259,7 +260,8 @@ console.log(ballPosition)
       {pressState.map((move, index) => {
         return (
          <>
-            {!spacePressed ? <Arrows move={move}index={index}setArrows={setArrows}arrows={arrows} key={index}/> : null}
+           {!spacePressed ? <Arrows move={move}index={index}setArrows={setArrows}arrows={arrows} key={index}/> : null} 
+          
          </>
            
        

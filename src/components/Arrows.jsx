@@ -1,8 +1,8 @@
 import arrow from "../assets/arrow.png";
-import { useEffect } from "react";
 
 
-const Arrows = ({move, setArrows, arrows}) => {
+
+const Arrows = ({move}) => {
 
 
   return (
