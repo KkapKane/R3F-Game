@@ -1,19 +1,18 @@
 import {useState,useEffect} from 'react';
 
-const ScoreBubble =({currentScore})=>{
+const ScoreBubble =({moveResult})=>{
     const [play, setPlay] = useState(true)
     useEffect(()=>{
     setPlay(true)
-    if (currentScore == "Miss.") {
+    if (moveResult == "Miss.") {
         setPlay(false)
     }
-    },[currentScore])
+    },[moveResult])
     return (
       <div
-        className='ScoreBubble'
+        className='ScoreBubble'>
         
-      >
-        {currentScore}
+        {moveResult}
       </div>
     );
 }

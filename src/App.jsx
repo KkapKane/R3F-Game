@@ -16,26 +16,26 @@ function App() {
 
  
 const [ballPosition, setBallPosition] = useState(0);
-const [currentScore, setCurrentScore] = useState('')
+const [moveResult, setMoveResult] = useState('')
+const [score, setScore] = useState(0)
 
-function moveBall() {
-  if (ballPosition > 100) {
+useEffect(()=>{
 
-    setBallPosition(0);
-  }
-  setBallPosition((prev) => prev + 0.5);
-  
-  requestAnimationFrame(moveBall);
-}
+const interval = setInterval(()=>{
+setBallPosition(prev => prev + 0.25)
+}, 1000/60)
 
-window.requestAnimationFrame(moveBall);
+return () => clearInterval(interval);
+
+},[])
+
 
 
   return (
     <>
       <Suspense>
-       <ScoreBubble currentScore={currentScore}/> 
-      <Interface ballPosition={ballPosition} setCurrentScore={setCurrentScore}/>
+       <ScoreBubble moveResult={moveResult} score={score}/> 
+      <Interface  setBallPosition={setBallPosition} ballPosition={ballPosition} setMoveResult={setMoveResult} score={score} moveResult={moveResult}/>
       <SpaceIndicator ballPosition={ballPosition}/>
       <Canvas camera={{ position: [0, 0, 5], fov: 50 }} shadows>
         <Experience   />

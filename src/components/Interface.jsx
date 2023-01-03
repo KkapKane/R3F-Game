@@ -4,7 +4,7 @@ import { useCharacterAnimation } from "../context/CharacterAnimation";
 import "../app.css";
 import Arrows from "./Arrows";
 
-const Interface = ({ballPosition,setCurrentScore}) => {
+const Interface = ({ballPosition,setBallPosition,setMoveResult}) => {
   const { animations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
     
@@ -14,17 +14,23 @@ const Interface = ({ballPosition,setCurrentScore}) => {
   const [playerMove, setPlayerMove] = useState([]);
   const [pressState, setPressState] = useState([])
   const [spacePressed, setSpacePressed] = useState(false)
-  const [twice, setTwice] = useState(0)
+
   
+
+  
+  
+
 
   useEffect(() => {
     //start model off standing idle
     setAnimationIndex(7);
     
     document.addEventListener("keydown", detectKeyDown, true);
-    
+
+
     return () => document.removeEventListener("keydown", detectKeyDown);
   }, []);
+
   
   //creates an arrow object with a random direction picked from possible moves array
   function generateMoves(num) {
@@ -50,9 +56,21 @@ const Interface = ({ballPosition,setCurrentScore}) => {
       setSpacePressed(false);
       
       generateMoves(6);
-    }, 1800);
+    }, 1000);
+   
     
   }, [animationIndex]);
+
+useEffect(() => {
+  if (ballPosition > 100) {
+   
+
+      generateMoves(6);
+  
+    setBallPosition(0);
+  }
+}, [ballPosition]);
+
   
   //here we check for if the key has been pressed and if it also matches the arrows_array(correct moves)
 const updatePress = () =>{
@@ -103,62 +121,60 @@ const updatePress = () =>{
    
     if(ballPosition > 80 && ballPosition < 90){
 
-      setCurrentScore('Perfect!')
+      setMoveResult('Perfect!')
     }
   
     else if(ballPosition > 70 && ballPosition < 79){
 
-      setCurrentScore('Great!')
+      setMoveResult('Great!')
     }
 
     else if(ballPosition > 60 && ballPosition < 69){
 
-      setCurrentScore('Cool')
+      setMoveResult('Cool')
     }
         
     else if(ballPosition > 50 && ballPosition < 59){
 
-      setCurrentScore('Bad...')
+      setMoveResult('Bad...')
     }
      
     else if(ballPosition  < 49){
 
-      setCurrentScore('Miss.')
+      setMoveResult('Miss.')
       setAnimationIndex(9)
+    
     }
       
 
     }
 
-    useEffect(()=>{
-if (twice == 2) {
-  setMoves([])
-  generateMoves(6);
-  setTwice(0);
-}
-    },[twice])
+
   
 
   useEffect(()=>{
     if(playerMove.length !== 6 && spacePressed == true){
-      
-      setTwice(prev => prev + 1)
+      //player didnt press all arrows before pressing space means they miss
+  
       
       setAnimationIndex(9)
       setPlayerMove([])
       setPressState([])
+     
       
     }
-if (playerMove.length === 6 && spacePressed == true) {
-  arrows.map((arrow, i) => {
-    if (arrow !== playerMove[i]) {
-      //set animation to the miss animation
-      setAnimationIndex(9);
+    //player pressed all keys and then pressed space
+    if (playerMove.length === 6 && spacePressed == true) {
+      arrows.map((arrow, i) => {
+        if (arrow !== playerMove[i]) {
+          //set animation to the miss animation
+       
+          setAnimationIndex(9);
    
       setPlayerMove([]);
     
     }
-
+    //successful move generates a random dance move
     setAnimationIndex(getRandomValidDanceMove());
     setPressState([])
   });
@@ -166,7 +182,7 @@ if (playerMove.length === 6 && spacePressed == true) {
   //once player press 6 moves we just reset it down to 0
   setPlayerMove([]);
 }
-
+console.log(ballPosition)
   },[spacePressed])
 
 
