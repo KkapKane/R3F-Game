@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
 import { useCharacterAnimation } from "../context/CharacterAnimation";
+import miss from '../assets/effect_m.wav'
+import bad from '../assets/effect_b.wav'
+import cool from '../assets/effect_c.wav'
+import great from '../assets/effect_g.wav'
+import perfect from '../assets/effect_p1.wav'
+import perfectx2 from '../assets/effect_p2.wav'
+import perfectx3 from '../assets/effect_p3.wav'
+
+
+
 
 import "../app.css";
 import Arrows from "./Arrows";
 
-const Interface = ({ballPosition,setBallPosition,setMoveResult}) => {
+const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore}) => {
   const { animations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
     
@@ -14,9 +24,13 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult}) => {
   const [playerMove, setPlayerMove] = useState([]);
   const [pressState, setPressState] = useState([])
   const [spacePressed, setSpacePressed] = useState(false)
+  const [perfCount, setPerfCount] = useState(0)
 
   
 
+  const playSound = (src) =>{
+    new Audio(src).play()
+  }
   
   
 
@@ -53,10 +67,16 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult}) => {
   useEffect(() => {
     
     setTimeout(() => {
-      setSpacePressed(false);
-      
       generateMoves(6);
-    }, 1000);
+      
+      
+    }, 800);
+    setTimeout(() => {
+      
+      
+      setSpacePressed(false);
+    }, 1500);
+    
    
     
   }, [animationIndex]);
@@ -120,29 +140,55 @@ const updatePress = () =>{
   function spaceScore(ballPosition){
    
     if(ballPosition > 80 && ballPosition < 90){
-
-      setMoveResult('Perfect!')
+      setPerfCount(prev => prev + 1)
+      if(perfCount === 0){
+        playSound(perfect)
+        setMoveResult('Perfect!')
+        setScore(prev => prev + 1000)
+      }
+      if(perfCount === 1){
+        playSound(perfectx2)
+        setMoveResult(`Perfect x${perfCount}!`)
+        setScore(prev => prev + 3000)
+      }
+      if(perfCount >= 2){
+        playSound(perfectx3)
+        setMoveResult(`Perfect x${perfCount}!`)
+        setScore(prev => prev + (3000 * perfCount))
+      }
+      return 'Perfect'
     }
   
     else if(ballPosition > 70 && ballPosition < 79){
-
+      setPerfCount(0);
+      playSound(great);
       setMoveResult('Great!')
+      setScore((prev) => prev + 800);
+      return 'Great';
     }
 
     else if(ballPosition > 60 && ballPosition < 69){
-
+      setPerfCount(0);
+      playSound(cool);
       setMoveResult('Cool')
+      setScore((prev) => prev + 500);
+      return 'Cool';
     }
         
     else if(ballPosition > 50 && ballPosition < 59){
-
+      setPerfCount(0);
+      playSound(bad);
       setMoveResult('Bad...')
+      setScore((prev) => prev + 300);
+      return 'Bad';
     }
      
     else if(ballPosition  < 49){
-
+      setPerfCount(0);
+      playSound(miss);
       setMoveResult('Miss.')
       setAnimationIndex(9)
+      return 'Miss';
     
     }
       

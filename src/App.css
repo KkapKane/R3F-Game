@@ -49,3 +49,15 @@ html, body {
  
 }
 
+.scoreBoard{
+  display: flex;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 2rem;
+  border: 1px solid black;
+  width: 20%;
+  
+  position: absolute;
+  top:80%;
+  right: 0%;
+}

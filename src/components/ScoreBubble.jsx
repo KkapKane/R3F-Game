@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react';
 
-const ScoreBubble =({moveResult})=>{
+const ScoreBubble =({moveResult,score})=>{
     const [play, setPlay] = useState(true)
     useEffect(()=>{
     setPlay(true)
@@ -9,11 +9,10 @@ const ScoreBubble =({moveResult})=>{
     }
     },[moveResult])
     return (
-      <div
-        className='ScoreBubble'>
-        
-        {moveResult}
-      </div>
+      <>
+      <div className="scoreBoard">Score: {score}</div>
+        <div className='ScoreBubble'>{moveResult}</div>
+      </>
     );
 }
 

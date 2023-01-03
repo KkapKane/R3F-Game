@@ -35,7 +35,7 @@ return () => clearInterval(interval);
     <>
       <Suspense>
        <ScoreBubble moveResult={moveResult} score={score}/> 
-      <Interface  setBallPosition={setBallPosition} ballPosition={ballPosition} setMoveResult={setMoveResult} score={score} moveResult={moveResult}/>
+      <Interface  setBallPosition={setBallPosition} ballPosition={ballPosition} setMoveResult={setMoveResult} setScore={setScore} score={score} moveResult={moveResult}/>
       <SpaceIndicator ballPosition={ballPosition}/>
       <Canvas camera={{ position: [0, 0, 5], fov: 50 }} shadows>
         <Experience   />
