@@ -25,12 +25,12 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setT
   const [pressState, setPressState] = useState([])
   const [spacePressed, setSpacePressed] = useState(false)
   const [perfCount, setPerfCount] = useState(0)
-
+  const [showArrows, setShowArrows] = useState(true)
   
 
   const playSound = (src) =>{
    let sound = new Audio(src)
-    sound.volume = .25;
+    sound.volume = .15;
     sound.play()
   }
   
@@ -86,9 +86,12 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setT
 useEffect(() => {
   if (ballPosition > 100) {
    
+    if(showArrows){
 
       generateMoves(6);
-      setSpacePressed(false);
+    }
+    setShowArrows(!showArrows)
+    setSpacePressed(false);
   
     setBallPosition(0);
   }
@@ -267,7 +270,7 @@ console.log(ballPosition)
       {pressState.map((move, index) => {
         return (
          <>
-           {!spacePressed ? <Arrows move={move}index={index}setArrows={setArrows}arrows={arrows} key={index}/> : null} 
+           {!spacePressed && !showArrows ? <Arrows move={move}index={index}setArrows={setArrows}arrows={arrows} key={index}/> : null} 
           
          </>
            

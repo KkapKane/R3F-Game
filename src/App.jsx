@@ -20,20 +20,29 @@ const [moveResult, setMoveResult] = useState('')
 const [score, setScore] = useState(0)
 const [textColor, setTextColor] = useState('')
 
-useEffect(()=>{
+// useEffect(()=>{
 
-const interval = setInterval(()=>{
-setBallPosition(prev => prev + 0.25)
-}, 1000/60)
+// const interval = setInterval(()=>{
+// setBallPosition(prev => prev + 0.25)
+// }, 1000/60)
 
-return () => clearInterval(interval);
+// return () => clearInterval(interval);
 
-},[])
+// },[])
+
+const startGame =(bpm)=>{
+  const interval = setInterval(() => {
+    setBallPosition((prev) => prev + bpm / 300);
+  }, 1000 / 60);
+
+  return () => clearInterval(interval);
+}
 
 
 
   return (
     <>
+    <button onClick={()=> startGame(120)}>START</button>
       <Suspense>
        <ScoreBubble moveResult={moveResult} score={score} textColor={textColor}/> 
       <Interface  setBallPosition={setBallPosition} setTextColor={setTextColor} ballPosition={ballPosition} setMoveResult={setMoveResult} setScore={setScore} score={score} moveResult={moveResult}/>

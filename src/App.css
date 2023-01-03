@@ -45,7 +45,7 @@ html, body {
 .ScoreBubble{
   position: absolute;
   font-size: 2rem;
-  letter-spacing: 1ch;
+  overflow: hidden;
   top: 35%;
   right: 43%;
   opacity: 1;
@@ -83,7 +83,7 @@ html, body {
   position: absolute;
   font-size: 2rem;
   
-  top: 35%;
+  top: 25%;
   right: 43%;
   
   
