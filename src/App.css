@@ -24,9 +24,13 @@ html, body {
       margin-right: -50%;
       border-radius: 100vw;
       z-index: 99;
+      background-color: white;
+      
     }
     
     .SPACE {
+      display: flex;
+      align-items: center;
       position: absolute;
       left: 39%;
       width: 25%;
@@ -44,7 +48,10 @@ html, body {
   letter-spacing: 1ch;
   top: 35%;
   right: 43%;
-  transition: 2000ms;
+  opacity: 1;
+  transform: scale(2);
+  transition: cubic-bezier(0.64, 0.57, 0.67, 1.53) 2000ms ease-in-out;
+
 
  
 }
@@ -60,4 +67,24 @@ html, body {
   position: absolute;
   top:80%;
   right: 0%;
+}
+
+.perfZone {
+  position: absolute;
+  width: 10%;
+  height: 80%;
+  left: 80%;
+  
+  border-radius: 100vw;
+  background-color: rgb(182, 214, 182);
+}
+
+.textexpand {
+  position: absolute;
+  font-size: 2rem;
+  
+  top: 35%;
+  right: 43%;
+  
+  
 }

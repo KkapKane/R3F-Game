@@ -14,7 +14,7 @@ import perfectx3 from '../assets/effect_p3.wav'
 import "../app.css";
 import Arrows from "./Arrows";
 
-const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore}) => {
+const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setTextColor}) => {
   const { animations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
     
@@ -29,7 +29,9 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore}) => {
   
 
   const playSound = (src) =>{
-    new Audio(src).play()
+   let sound = new Audio(src)
+    sound.volume = .25;
+    sound.play()
   }
   
   
@@ -142,6 +144,7 @@ const updatePress = () =>{
    
     if(ballPosition > 80 && ballPosition < 90){
       setPerfCount(prev => prev + 1)
+      setTextColor("#FF10F0");
       if(perfCount === 0){
         playSound(perfect)
         setMoveResult('Perfect!')
@@ -161,6 +164,7 @@ const updatePress = () =>{
     }
   
     else if(ballPosition > 70 && ballPosition < 79){
+      setTextColor("green");
       setPerfCount(0);
       playSound(great);
       setMoveResult('Great!')
@@ -169,6 +173,7 @@ const updatePress = () =>{
     }
 
     else if(ballPosition > 60 && ballPosition < 69){
+      setTextColor("lightblue");
       setPerfCount(0);
       playSound(cool);
       setMoveResult('Cool')
@@ -177,6 +182,7 @@ const updatePress = () =>{
     }
         
     else if(ballPosition > 50 && ballPosition < 59){
+      setTextColor("yellow");
       setPerfCount(0);
       playSound(bad);
       setMoveResult('Bad...')
@@ -189,6 +195,7 @@ const updatePress = () =>{
       playSound(miss);
       setMoveResult('Miss.')
       setAnimationIndex(9)
+      setTextColor("darkred");
       return 'Miss';
     
     }

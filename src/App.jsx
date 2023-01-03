@@ -18,6 +18,7 @@ function App() {
 const [ballPosition, setBallPosition] = useState(0);
 const [moveResult, setMoveResult] = useState('')
 const [score, setScore] = useState(0)
+const [textColor, setTextColor] = useState('')
 
 useEffect(()=>{
 
@@ -34,8 +35,8 @@ return () => clearInterval(interval);
   return (
     <>
       <Suspense>
-       <ScoreBubble moveResult={moveResult} score={score}/> 
-      <Interface  setBallPosition={setBallPosition} ballPosition={ballPosition} setMoveResult={setMoveResult} setScore={setScore} score={score} moveResult={moveResult}/>
+       <ScoreBubble moveResult={moveResult} score={score} textColor={textColor}/> 
+      <Interface  setBallPosition={setBallPosition} setTextColor={setTextColor} ballPosition={ballPosition} setMoveResult={setMoveResult} setScore={setScore} score={score} moveResult={moveResult}/>
       <SpaceIndicator ballPosition={ballPosition}/>
       <Canvas camera={{ position: [0, 0, 5], fov: 50 }} shadows>
         <Experience   />
