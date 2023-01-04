@@ -35,6 +35,7 @@ function App() {
   const { animations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
 const [ign, setIgn] = useState('')
+const [scoreBoard, setScoreBoard] = useState({miss: 0, bad: 0, cool: 0, great: 0, perfect: 0, combo: 0})
  let interval = useRef();
 const startGame =(bpm)=>{
   interval.current = setInterval(() => {
@@ -52,6 +53,7 @@ const playSound = (src) => {
   sound.onended = (()=>{
     clearInterval(interval.current)
     setBallPosition(0)
+    console.log(scoreBoard)
     setAnimationIndex(7)
     setMoveResult('')
    
@@ -69,6 +71,7 @@ return (
         textColor={textColor}
         ign={ign}
       />
+      <div>{scoreBoard.perfect} {scoreBoard.great}</div>
       <Interface
         setBallPosition={setBallPosition}
         setTextColor={setTextColor}
@@ -76,6 +79,8 @@ return (
         setMoveResult={setMoveResult}
         setScore={setScore}
         score={score}
+        setScoreBoard={setScoreBoard}
+        scoreBoard={scoreBoard}
         moveResult={moveResult}
       />
       <SpaceIndicator ballPosition={ballPosition} />

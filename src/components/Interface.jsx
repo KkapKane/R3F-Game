@@ -14,7 +14,7 @@ import perfectx3 from '../assets/effect_p3.wav'
 import "../app.css";
 import Arrows from "./Arrows";
 
-const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setTextColor}) => {
+const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setTextColor, setScoreBoard, scoreBoard}) => {
   const { animations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
     
@@ -147,6 +147,8 @@ const updatePress = () =>{
    
     if(ballPosition > 80 && ballPosition < 90){
       setPerfCount(prev => prev + 1)
+      console.log(scoreBoard)
+       setScoreBoard(({ ...scoreBoard, perfect: scoreBoard.perfect + 1 }));
       setTextColor("pink");
       if(perfCount === 0){
         playSound(perfect)
@@ -161,12 +163,13 @@ const updatePress = () =>{
       if(perfCount >= 2){
         playSound(perfectx3)
         setMoveResult(`Perfect x${perfCount}!`)
-        setScore(prev => prev + (3000 * perfCount))
+        setScore(prev => prev + (3000 * perfCount * 2))
       }
       return 'Perfect'
     }
   
     else if(ballPosition > 70 && ballPosition < 79){
+      setScoreBoard(({ ...scoreBoard, great: scoreBoard.great + 1 }));
       setTextColor("green");
       setPerfCount(0);
       playSound(great);
@@ -176,6 +179,7 @@ const updatePress = () =>{
     }
 
     else if(ballPosition > 60 && ballPosition < 69){
+      setScoreBoard( ({ ...scoreBoard, cool: scoreBoard.cool + 1 }));
       setTextColor("lightblue");
       setPerfCount(0);
       playSound(cool);
@@ -185,6 +189,7 @@ const updatePress = () =>{
     }
         
     else if(ballPosition > 50 && ballPosition < 59){
+      setScoreBoard(({ ...scoreBoard, bad: scoreBoard.bad + 1 }));
       setTextColor("yellow");
       setPerfCount(0);
       playSound(bad);
@@ -194,6 +199,7 @@ const updatePress = () =>{
     }
      
     else if(ballPosition  < 49){
+      setScoreBoard( ({ ...scoreBoard, miss: scoreBoard.miss + 1 }));
       setPerfCount(0);
       playSound(miss);
       setMoveResult('Miss.')
