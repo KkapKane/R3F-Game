@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 
 import { useState, useEffect, useRef} from 'react';
 import { Html, useProgress } from "@react-three/drei";
-import './App.css'
+import './App.scss'
 import Experience from "./components/Experience";
 import Interface from "./components/Interface";
 import { Suspense } from "react";
@@ -13,6 +13,7 @@ import SpaceIndicator from "./components/SpaceIndicator";
 import ScoreBubble from "./components/ScoreBubble";
 import Menu from "./components/Menu";
 import song from "./assets/song.mp3"
+import ScoreBoard from "./components/scoreBoard";
 
 function Loader() {
   const { progress } = useProgress();
@@ -52,7 +53,8 @@ const playSound = (src) => {
   sound.play();
   sound.onended = (()=>{
     clearInterval(interval.current)
-    setBallPosition(0)
+    setBallPosition(-200)
+    console.log(ballPosition)
     console.log(scoreBoard)
     setAnimationIndex(7)
     setMoveResult('')
@@ -63,15 +65,16 @@ const playSound = (src) => {
 
 return (
   <>
-  <button onClick={(()=> clearInterval(interval.current))}>CLICK</button>
+ 
       <Menu startGame={startGame} game={game} ign={ign} setIgn={setIgn} />
+      {ballPosition === -200 ? <ScoreBoard scoreBoard={scoreBoard} score={score}/> : null}
       <ScoreBubble
         moveResult={moveResult}
         score={score}
         textColor={textColor}
         ign={ign}
       />
-      <div>{scoreBoard.perfect} {scoreBoard.great}</div>
+    
       <Interface
         setBallPosition={setBallPosition}
         setTextColor={setTextColor}

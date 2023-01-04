@@ -11,7 +11,7 @@ import perfectx3 from '../assets/effect_p3.wav'
 
 
 
-import "../app.css";
+import "../app.scss";
 import Arrows from "./Arrows";
 
 const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setTextColor, setScoreBoard, scoreBoard}) => {
@@ -164,6 +164,8 @@ const updatePress = () =>{
         playSound(perfectx3)
         setMoveResult(`Perfect x${perfCount}!`)
         setScore(prev => prev + (3000 * perfCount * 2))
+        if(perfCount > scoreBoard.combo)
+        setScoreBoard({ ...scoreBoard, combo: perfCount });
       }
       return 'Perfect'
     }
@@ -286,7 +288,7 @@ console.log(ballPosition)
 
         );
       })}
-      {animations.map((animation, index) => {
+      {/* {animations.map((animation, index) => {
         return (
           <button
             key={animation}
@@ -296,7 +298,7 @@ console.log(ballPosition)
             {animation}
           </button>
         );
-      })}
+      })} */}
     </div>
   );
 };

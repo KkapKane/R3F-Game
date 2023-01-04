@@ -1,7 +1,7 @@
 import { OrbitControls, Stars, Text } from "@react-three/drei";
 
 
-import "../App.css";
+import "../App.scss";
 import FinalWoman from "./FinalWoman";
 import Woman from "./Woman";
 const Experience = ({ign}) => {
