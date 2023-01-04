@@ -46,11 +46,12 @@ html, body {
   position: absolute;
   font-size: 2rem;
   overflow: hidden;
-  top: 35%;
+     top: 30%;
   right: 43%;
   opacity: 1;
-  transform: scale(2);
-  transition: cubic-bezier(0.64, 0.57, 0.67, 1.53) 2000ms ease-in-out;
+  transform: scale(1.5);
+  z-index: 99;
+ transition: cubic-bezier(0.64, 0.57, 0.67, 1.53) 2000ms ease-in-out;
 
 
  
@@ -81,10 +82,41 @@ html, body {
 
 .textexpand {
   position: absolute;
+  
+
+  top: 76%;
+  right: 5%;
+  transition: 1000ms;
+  
+}
+
+.Menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+ background-color: rgb(0, 0, 0);
+ opacity: .8;
+  z-index: 99;
+
+ 
+}
+
+.startButton {
   font-size: 2rem;
-  
-  top: 25%;
-  right: 43%;
-  
-  
+  border-radius: 15px;
+  height: 10%;
+  width: 20%;
+}
+
+.LoadStatus {
+  color: white;
+  padding: 1rem;
+  position: absolute;
+  width: 10rem;
+  border: 1px solid white;
 }

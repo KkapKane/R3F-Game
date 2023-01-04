@@ -2,55 +2,88 @@
 
 import { Canvas } from "@react-three/fiber";
 
-import { useState, useEffect} from 'react';
-
+import { useState, useEffect, useRef} from 'react';
+import { Html, useProgress } from "@react-three/drei";
 import './App.css'
 import Experience from "./components/Experience";
 import Interface from "./components/Interface";
 import { Suspense } from "react";
-
+import { useCharacterAnimation } from "./context/CharacterAnimation";
 import SpaceIndicator from "./components/SpaceIndicator";
 import ScoreBubble from "./components/ScoreBubble";
+import Menu from "./components/Menu";
+import song from "./assets/song.mp3"
 
+function Loader() {
+  const { progress } = useProgress();
+  console.log(progress)
+  return (
+    <Html className="LoadStatus" center >
+      {Math.floor(progress)} % loaded
+    </Html>
+  );
+}
 function App() {
-
  
-const [ballPosition, setBallPosition] = useState(0);
-const [moveResult, setMoveResult] = useState('')
-const [score, setScore] = useState(0)
-const [textColor, setTextColor] = useState('')
-
-// useEffect(()=>{
-
-// const interval = setInterval(()=>{
-// setBallPosition(prev => prev + 0.25)
-// }, 1000/60)
-
-// return () => clearInterval(interval);
-
-// },[])
-
+  
+  
+  const [ballPosition, setBallPosition] = useState(0);
+  const [moveResult, setMoveResult] = useState('')
+  const [score, setScore] = useState(0)
+  const [textColor, setTextColor] = useState('')
+  const [game,setGame] = useState(false)
+  const { animations, animationIndex, setAnimationIndex } =
+    useCharacterAnimation();
+const [ign, setIgn] = useState('')
+ let interval = useRef();
 const startGame =(bpm)=>{
-  const interval = setInterval(() => {
+  interval.current = setInterval(() => {
     setBallPosition((prev) => prev + bpm / 300);
   }, 1000 / 60);
-
-  return () => clearInterval(interval);
+  setGame(true)
+  playSound(song);
+  return () => clearInterval(interval.current);
 }
 
+const playSound = (src) => {
+  let sound = new Audio(src);
+  sound.volume = 0.25;
+  sound.play();
+  sound.onended = (()=>{
+    clearInterval(interval.current)
+    setBallPosition(0)
+    setAnimationIndex(7)
+    setMoveResult('')
+   
+  })
+};
 
 
-  return (
-    <>
-    <button onClick={()=> startGame(120)}>START</button>
-      <Suspense>
-       <ScoreBubble moveResult={moveResult} score={score} textColor={textColor}/> 
-      <Interface  setBallPosition={setBallPosition} setTextColor={setTextColor} ballPosition={ballPosition} setMoveResult={setMoveResult} setScore={setScore} score={score} moveResult={moveResult}/>
-      <SpaceIndicator ballPosition={ballPosition}/>
+return (
+  <>
+  <button onClick={(()=> clearInterval(interval.current))}>CLICK</button>
+      <Menu startGame={startGame} game={game} ign={ign} setIgn={setIgn} />
+      <ScoreBubble
+        moveResult={moveResult}
+        score={score}
+        textColor={textColor}
+        ign={ign}
+      />
+      <Interface
+        setBallPosition={setBallPosition}
+        setTextColor={setTextColor}
+        ballPosition={ballPosition}
+        setMoveResult={setMoveResult}
+        setScore={setScore}
+        score={score}
+        moveResult={moveResult}
+      />
+      <SpaceIndicator ballPosition={ballPosition} />
       <Canvas camera={{ position: [0, 0, 5], fov: 50 }} shadows>
-        <Experience   />
+        <Suspense fallback={<Loader />}>
+          <Experience ign={ign} />
+        </Suspense>
       </Canvas>
-      </Suspense>
     </>
   );
 }

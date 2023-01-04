@@ -147,7 +147,7 @@ const updatePress = () =>{
    
     if(ballPosition > 80 && ballPosition < 90){
       setPerfCount(prev => prev + 1)
-      setTextColor("#FF10F0");
+      setTextColor("pink");
       if(perfCount === 0){
         playSound(perfect)
         setMoveResult('Perfect!')

@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react';
 
-const ScoreBubble =({moveResult,score, textColor})=>{
+const ScoreBubble =({moveResult,score, textColor, ign})=>{
     const [play, setPlay] = useState(true)
     useEffect(()=>{
     setPlay(true)
@@ -11,8 +11,8 @@ const ScoreBubble =({moveResult,score, textColor})=>{
     },[moveResult])
     return (
       <>
-      <div className="scoreBoard">Score: {score}</div>
-        <div className={play ? 'ScoreBubble' : 'textexpand'} style={{color: textColor, backgroundColor: 'black'}}>{moveResult}</div>
+      <div className="scoreBoard"> {ign}'s Score: {score}</div>
+        <div className={play ? 'ScoreBubble' : 'textexpand'} style={{color: textColor}}>{moveResult}</div>
       </>
     );
 }

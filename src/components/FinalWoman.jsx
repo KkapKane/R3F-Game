@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.1.1 public/models/FinalWoman.gltf
 */
 
 import React, { useRef, useEffect } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useGLTF, useAnimations, Text } from "@react-three/drei";
 import { useCharacterAnimation } from "../context/CharacterAnimation";
 
 const FinalWoman = (props) => {
@@ -40,11 +40,13 @@ const FinalWoman = (props) => {
             material={materials.Ch29_Body}
             skeleton={nodes.Ch29.skeleton}
             castShadow
-          />
+          >
+          </skinnedMesh>
         </group>
       </group>
     </group>
   );
+            
 };
 
 export default FinalWoman;
