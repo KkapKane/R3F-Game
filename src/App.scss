@@ -59,9 +59,9 @@ html, body {
 
 .scoreBoard{
   display: flex;
-  justify-content: center;
+  
   font-family: monospace;
-  font-size: 2rem;
+  font-size: 1rem;
   border: 1px solid black;
   width: 20%;
   
@@ -124,7 +124,7 @@ html, body {
 
 .endGameScoreBoard{
   display: flex;
-
+  flex-direction: column;
   color: white;
   position: absolute;
   top: 0;
@@ -156,5 +156,17 @@ gap: 1rem;
   .scoreContainer{
     display: flex;
  
+  }
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  height: 10%;
+  width: 100%;
+  button {
+    height: 50%;
+    width: 20%;
   }
 }

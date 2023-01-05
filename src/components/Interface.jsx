@@ -14,7 +14,7 @@ import perfectx3 from '../assets/effect_p3.wav'
 import "../app.scss";
 import Arrows from "./Arrows";
 
-const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setTextColor, setScoreBoard, scoreBoard}) => {
+const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setTextColor, setScoreBoard, scoreBoard, perfCount, setPerfCount}) => {
   const { animations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
     
@@ -24,7 +24,7 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setT
   const [playerMove, setPlayerMove] = useState([]);
   const [pressState, setPressState] = useState([])
   const [spacePressed, setSpacePressed] = useState(false)
-  const [perfCount, setPerfCount] = useState(0)
+  
   const [showArrows, setShowArrows] = useState(true)
   
 
@@ -66,22 +66,7 @@ const Interface = ({ballPosition,setBallPosition,setMoveResult , setScore , setT
     setPressState(currentMove);
   }
   
-  // useEffect(() => {
-    
-  //   // setTimeout(() => {
-  //   //   generateMoves(6);
-      
-      
-  //   // }, 800);
-  //   setTimeout(() => {
-      
-      
-  //     setSpacePressed(false);
-  //   }, 1500);
-    
-   
-    
-  // }, [animationIndex]);
+ 
 
 useEffect(() => {
   if (ballPosition > 100) {
@@ -118,7 +103,7 @@ const updatePress = () =>{
       updatePress();
 
       playerMove.map((playermove, i) => {
-        //if wrong arrow is pressed  we just set player arrow press progress to zero
+        //if wrong arrow is pressed set player arrow press progress to zero
           if (playermove !== arrows[i]) {
              
               
@@ -145,7 +130,7 @@ const updatePress = () =>{
 
   function spaceScore(ballPosition){
    
-    if(ballPosition > 80 && ballPosition < 90){
+    if(ballPosition > 80 && ballPosition < 100){
       setPerfCount(prev => prev + 1)
       console.log(scoreBoard)
        setScoreBoard(({ ...scoreBoard, perfect: scoreBoard.perfect + 1 }));
@@ -164,8 +149,10 @@ const updatePress = () =>{
         playSound(perfectx3)
         setMoveResult(`Perfect x${perfCount}!`)
         setScore(prev => prev + (3000 * perfCount * 2))
-        if(perfCount > scoreBoard.combo)
-        setScoreBoard({ ...scoreBoard, combo: perfCount });
+       
+
+          setScoreBoard(({ ...scoreBoard, combo: perfCount + 1, perfect: scoreBoard.perfect + 1 }));
+     
       }
       return 'Perfect'
     }

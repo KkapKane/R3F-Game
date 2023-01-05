@@ -1,7 +1,7 @@
 
 import {useState, useEffect}  from  'react';
 
-export default function ScoreBoard({scoreBoard, ballPosition,score}){
+export default function ScoreBoard({scoreBoard, ballPosition,score, startGame}){
 
     const [showBoard, setShowBoard] = useState(false)
 useEffect(()=>{
@@ -21,6 +21,10 @@ if(ballPosition == -200){
             <p>Cool: {scoreBoard.cool}</p>
             <p>Bad: {scoreBoard.bad}</p>
             <p>Miss: {scoreBoard.miss}</p>
+          </div>
+          <div className='buttonContainer'>
+            <button>Submit Score</button>
+            <button onClick={()=>startGame(140)}>retry</button>
           </div>
         </div>
       </div>
