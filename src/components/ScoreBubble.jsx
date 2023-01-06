@@ -11,7 +11,7 @@ const ScoreBubble =({moveResult,score, textColor, ign})=>{
     },[moveResult])
     return (
       <>
-      <div className="scoreBoard"> {ign}'s Score: {score}</div>
+      <div className="scoreBoard">Score: {score}</div>
         <div className={play ? 'ScoreBubble' : 'textexpand'} style={{color: textColor}}>{moveResult}</div>
       </>
     );

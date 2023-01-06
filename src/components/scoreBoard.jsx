@@ -1,14 +1,18 @@
 
 import {useState, useEffect}  from  'react';
 
-export default function ScoreBoard({scoreBoard, ballPosition,score, startGame}){
 
+function ScoreBoard({scoreBoard, ballPosition,score, startGame, setSpeed}){
     const [showBoard, setShowBoard] = useState(false)
+    const [selects,setSelects] = useState ();
+
 useEffect(()=>{
 if(ballPosition == -200){
     setShowBoard(true)
 }
 },[ballPosition])
+
+
 
     return (
       <div className='scoreBoardScreen'>
@@ -23,10 +27,20 @@ if(ballPosition == -200){
             <p>Miss: {scoreBoard.miss}</p>
           </div>
           <div className='buttonContainer'>
-            <button>Submit Score</button>
-            <button onClick={()=>startGame(140)}>retry</button>
+           {/* <div>Mode:{selects}</div> */}
+           <select value={selects} onChange={(e)=> setSpeed(e.target.value)} className="select">
+            <option value={600}>Super Slow</option>
+            <option value={360}>Tutorial</option>
+            <option value={300}>Easy</option>
+            <option value={233}>Normal</option>
+            <option value={150}>Hard</option>
+
+           </select>
+            <button onClick={() => startGame(140)}>retry</button>
           </div>
         </div>
       </div>
     );
 }
+
+export default ScoreBoard;

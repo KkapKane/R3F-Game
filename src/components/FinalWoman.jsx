@@ -19,11 +19,7 @@ const FinalWoman = (props) => {
   }, [names]);
 
   useEffect(() => {
-
-
-
-      actions[names[animationIndex]].reset().fadeIn(0.5).play();
-    
+    actions[names[animationIndex]].reset().fadeIn(0.5).play();
 
     return () => {
       actions[names[animationIndex]].fadeOut(0.5);
@@ -40,13 +36,11 @@ const FinalWoman = (props) => {
             material={materials.Ch29_Body}
             skeleton={nodes.Ch29.skeleton}
             castShadow
-          >
-          </skinnedMesh>
+          ></skinnedMesh>
         </group>
       </group>
     </group>
   );
-            
 };
 
 export default FinalWoman;

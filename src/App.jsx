@@ -1,27 +1,18 @@
+import { Html, useProgress } from "@react-three/drei";
+import { useState, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 
-import { useState, useEffect, useRef } from "react";
-import { Html, useProgress } from "@react-three/drei";
-import "./App.scss";
-import Experience from "./components/Experience";
-import Interface from "./components/Interface";
-import { Suspense } from "react";
 import { useCharacterAnimation } from "./context/CharacterAnimation";
 import SpaceIndicator from "./components/SpaceIndicator";
 import ScoreBubble from "./components/ScoreBubble";
+import Experience from "./components/Experience";
+import ScoreBoard from "./components/ScoreBoard";
+import Interface from "./components/Interface";
 import Menu from "./components/Menu";
 import song from "./assets/song.mp3";
-import ScoreBoard from "./components/scoreBoard";
+import { Suspense } from "react";
+import "./App.scss";
 
-function Loader() {
-  const { progress } = useProgress();
-  console.log(progress);
-  return (
-    <Html className='LoadStatus' center>
-      {Math.floor(progress)} % loaded
-    </Html>
-  );
-}
 function App() {
   const [ballPosition, setBallPosition] = useState(0);
   const [moveResult, setMoveResult] = useState("");
@@ -32,6 +23,9 @@ function App() {
   const { animations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
   const [ign, setIgn] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [speed, setSpeed] = useState(360);
+
   const [scoreBoard, setScoreBoard] = useState({
     miss: 0,
     bad: 0,
@@ -40,6 +34,24 @@ function App() {
     perfect: 0,
     combo: 0,
   });
+
+  function Loader() {
+    const { progress } = useProgress();
+    if (progress > 99) {
+      setLoading(false);
+    }
+    return (
+      <Html
+        as='div'
+        className='LoadStatus'
+        style={{ position: "absolute", top: "0%", left: "0%" }}
+        center
+      >
+        {Math.floor(progress)} % loaded
+      </Html>
+    );
+  }
+
   let interval = useRef();
   const startGame = (bpm) => {
     setBallPosition(0);
@@ -48,7 +60,7 @@ function App() {
     setMoveResult("");
     setScoreBoard({ miss: 0, bad: 0, cool: 0, great: 0, perfect: 0, combo: 0 });
     interval.current = setInterval(() => {
-      setBallPosition((prev) => prev + bpm / 360); // 233 is accurate number for bpm but we make it slower cause its easier
+      setBallPosition((prev) => prev + bpm / speed); // 233 is accurate number for bpm but we make it slower cause its easier
     }, 1000 / 60);
     setGame(true);
     playSound(song);
@@ -63,18 +75,29 @@ function App() {
       clearInterval(interval.current);
       setBallPosition(-200);
       setAnimationIndex(7);
+      setGame(false);
       setMoveResult("");
     };
   };
 
   return (
     <>
-      <Menu startGame={startGame} game={game} ign={ign} setIgn={setIgn} />
+      {!game ? (
+        <Menu
+          startGame={startGame}
+          game={game}
+          ign={ign}
+          setIgn={setIgn}
+          loading={loading}
+        />
+      ) : null}
       {ballPosition === -200 ? (
         <ScoreBoard
           scoreBoard={scoreBoard}
           score={score}
           startGame={startGame}
+          setSpeed={setSpeed}
+          speed={speed}
         />
       ) : null}
       <ScoreBubble
@@ -97,7 +120,7 @@ function App() {
         perfCount={perfCount}
         setPerfCount={setPerfCount}
       />
-      <SpaceIndicator ballPosition={ballPosition} />
+      <SpaceIndicator ballPosition={ballPosition} game={game} />
       <Canvas camera={{ position: [0, 0, 5], fov: 50 }} shadows>
         <Suspense fallback={<Loader />}>
           <Experience ign={ign} />
