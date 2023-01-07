@@ -6,11 +6,12 @@ Command: npx gltfjsx@6.1.1 public/models/FinalWoman.gltf
 import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations, Text } from "@react-three/drei";
 import { useCharacterAnimation } from "../context/CharacterAnimation";
+import woman from '../assets/Woman.gltf?url';
 
 
 const FinalWoman = (props) => {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("../src/assets/Woman.gltf");
+  const { nodes, materials, animations } = useGLTF(woman);
   const { setAnimations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
   const { actions, names } = useAnimations(animations, group);
@@ -45,4 +46,4 @@ const FinalWoman = (props) => {
 };
 
 export default FinalWoman;
-useGLTF.preload("../src/assets/Woman.gltf");
+useGLTF.preload(woman);
