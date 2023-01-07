@@ -7,9 +7,10 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations, Text } from "@react-three/drei";
 import { useCharacterAnimation } from "../context/CharacterAnimation";
 
+
 const FinalWoman = (props) => {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("./models/FinalWoman.gltf");
+  const { nodes, materials, animations } = useGLTF("../src/assets/Woman.gltf");
   const { setAnimations, animationIndex, setAnimationIndex } =
     useCharacterAnimation();
   const { actions, names } = useAnimations(animations, group);
@@ -44,4 +45,4 @@ const FinalWoman = (props) => {
 };
 
 export default FinalWoman;
-useGLTF.preload("./models/FinalWoman.gltf");
+useGLTF.preload("../src/assets/Woman.gltf");
