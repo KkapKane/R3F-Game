@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.1.1 public/models/FinalWoman.gltf
 import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations, Text } from "@react-three/drei";
 import { useCharacterAnimation } from "../context/CharacterAnimation";
-import woman from '../assets/Woman.gltf?url';
+import woman from '../assets/Woman.glb?url';
 
 
 const FinalWoman = (props) => {
