@@ -60,7 +60,7 @@ function App() {
     setMoveResult("");
     setScoreBoard({ miss: 0, bad: 0, cool: 0, great: 0, perfect: 0, combo: 0 });
     interval.current = setInterval(() => {
-      setBallPosition((prev) => prev + bpm / speed); // 233 is accurate number for bpm but we make it slower cause its easier
+      setBallPosition((prev) => prev + bpm / speed); // 146 is accurate number for bpm but we make it slower cause its easier
     }, 1000 / 60);
     setGame(true);
     playSound(song);
