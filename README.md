@@ -12,7 +12,6 @@ Click [here](https://kkapkane.github.io/R3F-Game/) for live demo.
 <br>
 <br>
 
-
 # Description
 
 <h4> A recreation of my childhood game Audition Online. An online dancing game. </h4>
@@ -20,6 +19,7 @@ Click [here](https://kkapkane.github.io/R3F-Game/) for live demo.
 <p>Got song from https://en.pocket-se.info/archives/1956/ </p>
 
 # Features
+
 - Arrow keys randomly generate when the ball reaches the end of the bar.
 - Acurrate bpm if set on hard mode.
 - 3D animation using React Three Fiber.
@@ -27,21 +27,14 @@ Click [here](https://kkapkane.github.io/R3F-Game/) for live demo.
 - Keeps track of score and the different amount of moves.
 - 4 different difficulty settings offered after the end of each game.
 
-
 # Previews
 
-
-
-
-<img src="https://s3.gifyu.com/images/audition5ebd69d440cfe419.png" alt="preview" width="900">
-
-
+<img src="assets/1.png" alt="preview" width="900">
 
 # Things I learned from this Project
 
-* Discovered useContext on this project
+- Discovered useContext on this project
 
-* setInterval can be used to make a game loop
+- setInterval can be used to make a game loop
 
-
-* can use git lfs if project contains files that are over 100mb
+- can use git lfs if project contains files that are over 100mb
