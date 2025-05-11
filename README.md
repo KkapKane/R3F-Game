@@ -24,6 +24,14 @@ Music sourced from [this archive](https://en.pocket-se.info/archives/1956/).
 
 ---
 
+
+
+
+https://github.com/user-attachments/assets/a355238f-98c6-4e31-a45b-1c80a2ce4cef
+
+
+
+
 ## Features
 
 - Dynamic arrow prompts generated in sync with the rhythm timeline.
@@ -32,9 +40,3 @@ Music sourced from [this archive](https://en.pocket-se.info/archives/1956/).
 - 15+ unique dance moves, mapped to input sequences.
 - Score and move tracking displayed live during gameplay.
 - Four difficulty levels offered after each round.
-
----
-
-<img src="assets/dance.gif" alt="gameplay preview" width="900"/>
-
----
