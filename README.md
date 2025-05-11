@@ -35,8 +35,6 @@ Music sourced from [this archive](https://en.pocket-se.info/archives/1956/).
 
 ---
 
-## Screenshots
-
 <img src="assets/dance.gif" alt="gameplay preview" width="900"/>
 
 ---
