@@ -1,5 +1,5 @@
 {
-  "homepage": "http://KkapKane.github.io/R3F-Game",
+  "homepage": "http://KkapKane.github.io/RhythmRush",
   "name": "r3f-game2",
   "private": true,
   "version": "0.0.0",
@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
     "preview": "vite preview"
   },
